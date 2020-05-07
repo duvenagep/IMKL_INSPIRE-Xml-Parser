@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gml:FeatureCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:base="http://inspire.ec.europa.eu/schemas/base/3.3" xmlns:net="http://inspire.ec.europa.eu/schemas/net/4.0" xmlns:us-net-ogc="http://inspire.ec.europa.eu/schemas/us-net-ogc/4.0" xmlns:us-net-el="http://inspire.ec.europa.eu/schemas/us-net-el/4.0" xmlns:us-net-tc="http://inspire.ec.europa.eu/schemas/us-net-tc/4.0" xmlns:us-net-common="http://inspire.ec.europa.eu/schemas/us-net-common/4.0" xmlns:base2="http://inspire.ec.europa.eu/schemas/base2/2.0" xmlns:us-net-sw="http://inspire.ec.europa.eu/schemas/us-net-sw/4.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:us-net-wa="http://inspire.ec.europa.eu/schemas/us-net-wa/4.0" xmlns:us-net-th="http://inspire.ec.europa.eu/schemas/us-net-th/4.0" xmlns:imkl="http://www.geostandaarden.nl/imkl/2015/wion/1.2" gml:id="ID_Netinformatie_GM1525_09-01-2020" xsi:schemaLocation="http://www.geostandaarden.nl/imkl/2015/wion/1.2 http://register.geostandaarden.nl/gmlapplicatieschema/imkl2015/1.2.1/imkl2015-wion.xsd">
+	<gml:featureMember>
+		<imkl:Utiliteitsnet gml:id="nl.imkl-GM1525.un_OVR_1">
+			<us-net-common:utilityNetworkType xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/UtilityNetworkTypeIMKLValue/overig"/>
+			<us-net-common:authorityRole xlink:href="http://inspire.ec.europa.eu/codelist/RelatedPartyRoleValue/authority"/>
+			<imkl:identificatie>
+				<imkl:NEN3610ID>
+					<imkl:namespace>nl.imkl</imkl:namespace>
+					<imkl:lokaalID>GM1525.un_OVR_1</imkl:lokaalID>
+				</imkl:NEN3610ID>
+			</imkl:identificatie>
+			<imkl:beginLifespanVersion>1964-01-01T00:00:00.0Z</imkl:beginLifespanVersion>
+			<imkl:omschrijving>Beheerder: Teylingen, email: , tel: </imkl:omschrijving>
+			<imkl:thema xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/Thema/overig"/>
+			<!--    <imkl:aantalKabelsLeidingen>1</imkl:aantalKabelsLeidingen> -->
+		</imkl:Utiliteitsnet>
+	</gml:featureMember>
+	<gml:featureMember>
+		<imkl:Utiliteitsnet gml:id="nl.imkl-GM1525.un_RVV_13110">
+			<us-net-common:utilityNetworkType xlink:href="http://inspire.ec.europa.eu/codelist/UtilityNetworkTypeValue/sewer"/>
+			<us-net-common:authorityRole xlink:href="http://inspire.ec.europa.eu/codelist/RelatedPartyRoleValue/authority"/>
+			<imkl:identificatie>
+				<imkl:NEN3610ID>
+					<imkl:namespace>nl.imkl</imkl:namespace>
+					<imkl:lokaalID>GM1525.un_RVV_13110</imkl:lokaalID>
+				</imkl:NEN3610ID>
+			</imkl:identificatie>
+			<imkl:beginLifespanVersion>1975-01-01T00:00:00.0Z</imkl:beginLifespanVersion>
+			<imkl:omschrijving>Beheerder: Teylingen, email: , tel: </imkl:omschrijving>
+			<imkl:thema xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/Thema/rioolVrijverval"/>
+			<!--    <imkl:aantalKabelsLeidingen>1</imkl:aantalKabelsLeidingen> -->
+		</imkl:Utiliteitsnet>
+	</gml:featureMember>
+	<gml:featureMember>
+		<imkl:Utiliteitsnet gml:id="nl.imkl-GM1525.un_RVV_11218">
+			<us-net-common:utilityNetworkType xlink:href="http://inspire.ec.europa.eu/codelist/UtilityNetworkTypeValue/sewer"/>
+			<us-net-common:authorityRole xlink:href="http://inspire.ec.europa.eu/codelist/RelatedPartyRoleValue/authority"/>
+			<imkl:identificatie>
+				<imkl:NEN3610ID>
+					<imkl:namespace>nl.imkl</imkl:namespace>
+					<imkl:lokaalID>GM1525.un_RVV_11218</imkl:lokaalID>
+				</imkl:NEN3610ID>
+			</imkl:identificatie>
+			<imkl:beginLifespanVersion>1989-01-01T00:00:00.0Z</imkl:beginLifespanVersion>
+			<imkl:omschrijving>Beheerder: Teylingen, email: , tel: </imkl:omschrijving>
+			<imkl:thema xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/Thema/rioolVrijverval"/>
+			<!--    <imkl:aantalKabelsLeidingen>1</imkl:aantalKabelsLeidingen> -->
+		</imkl:Utiliteitsnet>
+	</gml:featureMember>
+	<gml:featureMember>
+		<imkl:Appurtenance gml:id="nl.imkl-GM1525.RVV_12631">
+			<net:beginLifespanVersion>1978-01-01T00:00:00.0Z</net:beginLifespanVersion>
+			<net:inspireId>
+				<base:Identifier>
+					<base:localId>GM1525.RVV_12631</base:localId>
+					<base:namespace>nl.imkl</base:namespace>
+				</base:Identifier>
+			</net:inspireId>
+			<net:inNetwork xlink:href="nl.imkl-GM1525.un_RVV_12631"/>
+			<net:geometry>
+				<gml:Point gml:id="id-2b233805-44d5-4f2c-a235-e2d7012b3e63-0" srsName="Netherlands-RDNew-2008" srsDimension="2">
+					<gml:pos>93913.69 467682.16</gml:pos>
+				</gml:Point>
+			</net:geometry>
+			<us-net-common:currentStatus xlink:href="http://inspire.ec.europa.eu/codelist/ConditionOfFacilityValue/functional"/>
+			<us-net-common:validFrom>1978-01-01T00:00:00.0Z</us-net-common:validFrom>
+			<us-net-common:verticalPosition>underground</us-net-common:verticalPosition>
+			<us-net-common:appurtenanceType xlink:href="http://definities.geostandaarden.nl/imkl2015/id/waarde/SewerAppurtenanceTypeIMKLValue/onbekend"/>
+		</imkl:Appurtenance>
+	</gml:featureMember>
+</gml:FeatureCollection>
