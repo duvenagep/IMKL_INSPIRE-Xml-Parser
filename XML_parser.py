@@ -5,13 +5,12 @@ start_time = time.time()
 
 # netinformatie_Obsurv_GM1525
 # netinformatie_Obsurv_GM0503
-# Sample
-# , events=("start", "end")
+
 file_path = 'Sample.xml'
 parser = ET.XMLParser(encoding='UTF-8')
 context = ET.iterparse(file_path, events=(
     "start", "end", "start-ns", "end-ns"), parser=parser)
-# print(context)
+
 
 ns = {'xlink': 'http://www.w3.org/1999/xlink',
       'imkl': 'http://www.geostandaarden.nl/imkl/2015/wion/1.2',
@@ -19,9 +18,8 @@ ns = {'xlink': 'http://www.w3.org/1999/xlink',
       'gml:id': 'ID_Netinformatie_GM1525_09-01-2020',
       'us-net-common': 'http://inspire.ec.europa.eu/schemas/us-net-common/4.0'}
 
-# Strip all namespaces from xml to make life much easier
 
-
+# Strip all namespaces from xml to make life much easier. The includion of the .xsd file might remove the need for this function
 def strip_tag_namespace(t):
     idx = t.rfind("}")
     if idx != -1:
@@ -29,6 +27,7 @@ def strip_tag_namespace(t):
     return t
 
 
+# This fucntion parsers all the elements from the Utiliteitsnet section of the IMKL xml
 def Utiliteitsnet_Parse(feature):
     t_less = strip_tag_namespace(feature.tag)
     # if t_less == 'featureMember':
@@ -58,7 +57,7 @@ def Utiliteitsnet_Parse(feature):
         thema = feature.attrib['{' + ns['xlink'] + '}href']
         return thema
 
-# ['{' + ns['xlink'] + '}href']
+
 # def Appurtanance_Parse(feature):
 #     t_less = strip_tag_namespace(feature.tag)
 #     if t_less == 'featureMember':
@@ -97,7 +96,7 @@ def Utiliteitsnet_Parse(feature):
 #         appurtenanceType = feature.attrib['{' + ns['xlink'] + '}href']
 #         return appurtenanceType
 
-
+# This is the main XML parser function
 output = []
 for event, elem in context:
     if event == 'end':
@@ -121,21 +120,21 @@ for event, elem in context:
 #     output.append(appurt)
 
 # print(output)
-print(len(output))
+# print(len(output))
 # pprint.pprint(output)
-# n = 0
-# for i, val in enumerate(output):
-#     if len(val) < 8:
-#         if val[0] == 'u_net':
-#             Util = val[1]
-#             # Util_net = val[2]
-#             # auth = val[3]
-#             # ID_Lok = val[5]
-#             # life = val[6]
-#             # oms = val[7]
-#             # the = val[8]
-#             n += 1
-#             print(len(val), i, Util)
+
+
+# This is the output function that needs to be amended within FME
+for i, val in enumerate(output):
+    if val[0] == 'u_net':
+        Util = val[1]
+        Util_net = val[2]
+        auth = val[3]
+        ID_Lok = val[5]
+        life = val[6]
+        oms = val[7]
+        the = val[8]
+        print(i, Util, Util_net, auth, ID_Lok, life, oms, the)
 # print(n, len(val), Util)
 # print(f'{i}:{val}')
 
