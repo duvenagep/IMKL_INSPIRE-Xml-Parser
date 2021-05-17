@@ -1,6 +1,7 @@
-import xml.etree.cElementTree as ET
+import xml.etree.ElementTree as ET
 import time
 import pprint
+import re
 start_time = time.time()
 
 # netinformatie_Obsurv_GM1525
@@ -19,7 +20,7 @@ ns = {'xlink': 'http://www.w3.org/1999/xlink',
       'us-net-common': 'http://inspire.ec.europa.eu/schemas/us-net-common/4.0'}
 
 
-# Strip all namespaces from xml to make life much easier. The includion of the .xsd file might remove the need for this function
+# Strip all namespaces from xml to make life much easier. The inclusion of the .xsd file might remove the need for this function
 def strip_tag_namespace(t):
     idx = t.rfind("}")
     if idx != -1:
@@ -27,116 +28,53 @@ def strip_tag_namespace(t):
     return t
 
 
-# This fucntion parsers all the elements from the Utiliteitsnet section of the IMKL xml
-def Utiliteitsnet_Parse(feature):
-    t_less = strip_tag_namespace(feature.tag)
-    # if t_less == 'featureMember':
-    #     pass
-    if t_less == 'Utiliteitsnet':
-        Utiliteitsnet = feature.attrib['{' + ns['gml'] + '}id']
-        return Utiliteitsnet
-    elif t_less == 'utilityNetworkType':
-        utilityNetworkType = feature.attrib['{' + ns['xlink'] + '}href']
-        return utilityNetworkType
-    elif t_less == 'authorityRole':
-        authorityRole = feature.attrib['{' + ns['xlink'] + '}href']
-        return authorityRole
-    elif t_less == 'namespace':
-        namespace = feature.text
-        return namespace
-    elif t_less == 'lokaalID':
-        lokaalID = feature.text
-        return lokaalID
-    elif t_less == 'beginLifespanVersion':
-        beginLifespanVersion = feature.text
-        return beginLifespanVersion
-    elif t_less == 'omschrijving':
-        omschrijving = feature.text
-        return omschrijving
-    elif t_less == 'thema':
-        thema = feature.attrib['{' + ns['xlink'] + '}href']
-        return thema
+def check_valid(input):
+    if input != "" and input is not None and input.isprintable():
+        return True
+    else:
+        return False
 
 
-# def Appurtanance_Parse(feature):
-#     t_less = strip_tag_namespace(feature.tag)
-#     if t_less == 'featureMember':
-#         pass
-#     elif t_less == 'Appurtenance':
-#         Appurtenance = feature.attrib['{' + ns['gml'] + '}id']
-#         return Appurtenance
-#     elif t_less == 'beginLifespanVersion':
-#         beginLifespanVersion = feature.text
-#         return beginLifespanVersion
-#     elif t_less == 'localId':
-#         localId = feature.text
-#         return localId
-#     elif t_less == 'namespace':
-#         namespace = feature.text
-#         return namespace
-#     elif t_less == 'inNetwork':
-#         inNetwork = feature.attrib['{' + ns['xlink'] + '}href']
-#         return inNetwork
-#     elif t_less == 'geometry':
-#         for geo in feature.iter():
-#             geo_tag = strip_tag_namespace(geo.tag)
-#             if geo_tag == 'pos':
-#                 point = geo.text
-#                 return point
-#     elif t_less == 'currentStatus':
-#         currentStatus = feature.attrib['{' + ns['xlink'] + '}href']
-#         return currentStatus
-#     elif t_less == 'validFrom':
-#         validFrom = feature.text
-#         return validFrom
-#     elif t_less == 'verticalPosition':
-#         verticalPosition = feature.text
-#         return verticalPosition
-#     elif t_less == 'appurtenanceType':
-#         appurtenanceType = feature.attrib['{' + ns['xlink'] + '}href']
-#         return appurtenanceType
+# This Function needs a lot of work, too many exceptions to the parser rule
 
-# This is the main XML parser function
-output = []
-for event, elem in context:
-    if event == 'end':
-        # print(elem.tag)
-        if strip_tag_namespace(elem.tag) == 'Utiliteitsnet':
-            u_net = ['u_net']
-            for tag in elem.iter():
-                value = Utiliteitsnet_Parse(tag)
-                if value:
-                    u_net.append(value)
-            output.append(u_net)
-            tag.clear()
-        # elem.clear()
-
-# elif tag_less == 'Appurtenance':
-#     appurt = ['appurt']
-#     for tag in elem.iter():
-#         value = Appurtanance_Parse(tag)
-#         if value:
-#             appurt.append(value)
-#     output.append(appurt)
-
-# print(output)
-# print(len(output))
-# pprint.pprint(output)
+def parse(feature):
+    tag = strip_tag_namespace(feature.tag)
+    sub_1 = '\n'
+    #sub_2 = '\t'
+    try:
+        output = feature.attrib['{' + ns['gml'] + '}id']
+        # print(check_valid(output))
+        if check_valid(output):
+            return output
+        else:
+            pass
+    except:
+        pass
+    try:
+        output = feature.attrib['{' + ns['xlink'] + '}href']
+        if check_valid(output):
+            return output
+        else:
+            pass
+    except:
+        pass
+    try:
+        output = feature.text
+        if check_valid(output):
+            return output
+        else:
+            pass
+    except:
+        pass
 
 
-# This is the output function that needs to be amended within FME
-for i, val in enumerate(output):
-    if val[0] == 'u_net':
-        Util = val[1]
-        Util_net = val[2]
-        auth = val[3]
-        ID_Lok = val[5]
-        life = val[6]
-        oms = val[7]
-        the = val[8]
-        print(i, Util, Util_net, auth, ID_Lok, life, oms, the)
-# print(n, len(val), Util)
-# print(f'{i}:{val}')
+if __name__ == "__main__":
+
+    output = []
+    for event, elem in context:
+        if event == 'end':
+            print(parse(elem))
+
 
 print("--- %s minutes ---" % ((time.time() - start_time)/60))
 
